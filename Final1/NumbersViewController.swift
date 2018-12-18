@@ -10,12 +10,26 @@ import UIKit
 
 class NumbersViewController: UIViewController {
     
+    @IBOutlet weak var expressionLabel: UILabel!
+    
     var queue = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        expressionLabel.text = queue
+    }
+    
+    @IBAction func numberClicked(_ sender: UIButton) {
+        if (sender.currentTitle! == "=") {
+            
+        } else {
+            let newQueue = queue + sender.currentTitle!
+            let vc = storyboard?.instantiateViewController(withIdentifier: "operators") as! OperatorsViewController
+            vc.queue = newQueue
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

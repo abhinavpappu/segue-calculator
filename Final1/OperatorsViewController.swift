@@ -9,14 +9,27 @@
 import UIKit
 
 class OperatorsViewController: UIViewController {
-
+    @IBOutlet weak var expressionLabel: UILabel!
+    
+    var queue = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        expressionLabel.text = queue
     }
     
-
+    @IBAction func operatorClicked(_ sender: UIButton) {
+        if (sender.currentTitle! == "=") {
+            
+        } else {
+            let newQueue = queue + sender.currentTitle!
+            let vc = storyboard?.instantiateViewController(withIdentifier: "numbers") as! NumbersViewController
+            vc.queue = newQueue
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
